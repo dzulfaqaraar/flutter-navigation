@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'profile_page.dart';
+import 'setting_page.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -19,13 +22,19 @@ class HomePage extends StatelessWidget {
             ElevatedButton(
               child: const Text('Go to Profile'),
               onPressed: () {
-                Navigator.pushNamed(context, '/profile');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const ProfilePage()),
+                );
               },
             ),
             ElevatedButton(
               child: const Text('Go to Setting'),
               onPressed: () {
-                Navigator.pushNamed(context, '/setting');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const SettingPage()),
+                );
               },
             ),
           ],

@@ -1,3 +1,3 @@
 # Flutter Navigation
 
-Starter application for navigation
+An application with navigation using Navigator.push function
