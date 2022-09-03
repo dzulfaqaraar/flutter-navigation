@@ -9,7 +9,28 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Home Page'),
       ),
-      body: const Center(child: Text('Home')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ElevatedButton(
+              child: const Text('Go to Profile'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/profile');
+              },
+            ),
+            ElevatedButton(
+              child: const Text('Go to Setting'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/setting');
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
