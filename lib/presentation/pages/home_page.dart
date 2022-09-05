@@ -1,4 +1,5 @@
 import 'package:app/common/navigation.dart';
+import 'package:app/presentation/pages/setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,6 +28,16 @@ class HomePage extends StatelessWidget {
                 Navigation.push(
                   MaterialPageRoute(
                     builder: (_) => const ProfilePage(),
+                  ),
+                );
+              },
+            ),
+            ElevatedButton(
+              child: const Text('Go to Setting'),
+              onPressed: () {
+                Navigation.push(
+                  MaterialPageRoute(
+                    builder: (_) => const SettingPage(),
                   ),
                 );
               },
