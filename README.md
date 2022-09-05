@@ -1,3 +1,3 @@
 # Flutter Navigation
 
-Starter application for navigation
+Starter application for handling navigation globally

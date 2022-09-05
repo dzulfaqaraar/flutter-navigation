@@ -1,7 +1,12 @@
-import 'package:app/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'injection.dart' as di;
+import 'presentation/pages/login_page.dart';
+import 'presentation/provider/login_notifier.dart';
 
 void main() {
+  di.init();
   runApp(const MyApp());
 }
 
@@ -15,7 +20,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: ChangeNotifierProvider<LoginNotifier>(
+        create: (_) => LoginNotifier(
+          checkSession: di.locator(),
+          postLogin: di.locator(),
+        ),
+        child: const LoginPage(isFromLogout: false),
+      ),
     );
   }
 }
