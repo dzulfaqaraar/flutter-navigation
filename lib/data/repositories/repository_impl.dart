@@ -60,6 +60,7 @@ class RepositoryImpl implements Repository {
     try {
       final token = await localDataSource.getToken();
       if (token == null) {
+        await localDataSource.clear();
         return const Left(TokenFailure(serverFailureMessage));
       }
 
