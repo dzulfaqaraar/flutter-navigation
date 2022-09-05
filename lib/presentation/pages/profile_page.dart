@@ -18,7 +18,7 @@ class _ProfilePageState extends State<ProfilePage> {
     super.initState();
 
     Future.delayed(Duration.zero, () {
-      Provider.of<ProfileNotifier>(context, listen: false).fetchUserData();
+      Provider.of<ProfileNotifier>(context, listen: false).fetchUserData(context);
     });
   }
 

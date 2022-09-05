@@ -1,3 +1,3 @@
 # Flutter Navigation
 
-Starter application for handling navigation globally
+The first solution for handling expiration tokens.
