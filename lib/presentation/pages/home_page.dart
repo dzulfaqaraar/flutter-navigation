@@ -1,12 +1,9 @@
+import 'package:app/common/navigation.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/home_notifier.dart';
-import '../provider/profile_notifier.dart';
 import 'profile_page.dart';
-
-final locator = GetIt.instance;
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -27,13 +24,9 @@ class HomePage extends StatelessWidget {
             ElevatedButton(
               child: const Text('Go to Profile'),
               onPressed: () {
-                Navigator.push(
-                  context,
+                Navigation.push(
                   MaterialPageRoute(
-                    builder: (_) => ChangeNotifierProvider<ProfileNotifier>(
-                      create: (_) => ProfileNotifier(getUser: locator()),
-                      child: const ProfilePage(),
-                    ),
+                    builder: (_) => const ProfilePage(),
                   ),
                 );
               },

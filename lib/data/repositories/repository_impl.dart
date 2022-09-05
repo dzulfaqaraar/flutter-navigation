@@ -59,12 +59,7 @@ class RepositoryImpl implements Repository {
   Future<Either<Failure, User>> getDataUser() async {
     try {
       final token = await localDataSource.getToken();
-      if (token == null) {
-        await localDataSource.clear();
-        return const Left(TokenFailure(serverFailureMessage));
-      }
-
-      final result = await remoteDataSource.getDataUser(token);
+      final result = await remoteDataSource.getDataUser(token ?? '');
       return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure(serverFailureMessage));

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 import '../../common/loading_indicator.dart';
+import '../../common/navigation.dart';
 import '../../common/state_enum.dart';
 import '../provider/home_notifier.dart';
 import '../provider/login_notifier.dart';
 import 'home_page.dart';
+
+final locator = GetIt.instance;
 
 class LoginPage extends StatefulWidget {
   final bool isFromLogout;
@@ -26,8 +30,7 @@ class _LoginPageState extends State<LoginPage> {
 
     Future.microtask(
       () => Provider.of<LoginNotifier>(context, listen: false).isLoggedIn(() {
-        Navigator.pushReplacement(
-          context,
+        Navigation.pushReplacement(
           MaterialPageRoute(
             builder: (_) => ChangeNotifierProvider<HomeNotifier>(
               create: (_) => HomeNotifier(logoutUser: locator()),
@@ -131,7 +134,8 @@ class _LoginPageState extends State<LoginPage> {
         ),
         Consumer<LoginNotifier>(builder: (context, notifier, child) {
           return LoadingIndicator(
-            isLoading: !widget.isFromLogout && notifier.state == RequestState.loading,
+            isLoading:
+                !widget.isFromLogout && notifier.state == RequestState.loading,
           );
         }),
       ],

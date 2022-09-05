@@ -1,7 +1,12 @@
-
+import 'package:app/common/navigation.dart';
+import 'package:app/presentation/pages/login_page.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../common/date_time_helper.dart';
+import '../../injection.dart' as di;
+import '../../presentation/provider/login_notifier.dart';
 
 abstract class LocalDataSource {
   Future<bool> isLoggedIn();
@@ -44,6 +49,19 @@ class LocalDataSourceImpl implements LocalDataSource {
   Future<String?> getToken() async {
     final expire = _preferences.getString(keyExpire) ?? '';
     if (DateTimeHelper.isExpired(expire)) {
+      await clear();
+      Navigation.pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (_) => ChangeNotifierProvider<LoginNotifier>(
+            create: (_) => LoginNotifier(
+              checkSession: di.locator(),
+              postLogin: di.locator(),
+            ),
+            child: const LoginPage(isFromLogout: true),
+          ),
+        ),
+        (r) => false,
+      );
       return null;
     }
     return _preferences.getString(keyToken);

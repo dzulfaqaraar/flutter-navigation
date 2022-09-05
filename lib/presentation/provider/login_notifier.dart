@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
+import '../../common/navigation.dart';
 import '../../common/state_enum.dart';
 import '../../domain/usecases/check_session.dart';
 import '../../domain/usecases/post_login.dart';
 import '../pages/home_page.dart';
 import 'home_notifier.dart';
+
+final locator = GetIt.instance;
 
 class LoginNotifier extends ChangeNotifier {
   final CheckSession checkSession;
@@ -54,8 +58,7 @@ class LoginNotifier extends ChangeNotifier {
           _state = RequestState.loaded;
           notifyListeners();
 
-          Navigator.pushReplacement(
-            context,
+          Navigation.pushReplacement(
             MaterialPageRoute(
               builder: (_) => ChangeNotifierProvider<HomeNotifier>(
                 create: (_) => HomeNotifier(logoutUser: locator()),
