@@ -1,3 +1,4 @@
+import 'package:app/common/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,8 +19,7 @@ class HomeNotifier extends ChangeNotifier {
 
   Future<void> logout(BuildContext context) async {
     if (await logoutUser.execute()) {
-      Navigator.pushAndRemoveUntil(
-        context,
+      Navigation.pushAndRemoveUntil(
         MaterialPageRoute(
           builder: (_) => ChangeNotifierProvider<LoginNotifier>(
             create: (_) => LoginNotifier(

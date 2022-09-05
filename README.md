@@ -1,3 +1,5 @@
 # Flutter Navigation
 
-The first solution for handling expiration tokens.
+The final solution for handling expiration tokens.
+Manage navigation globally using GlobalKey<NavigatorState>.
+Manage provider instance globally using MultiProvider.
